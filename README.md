@@ -1,4 +1,4 @@
-This repo contains the development of the NFTify browser extension.  It's broken into two sections.
+This repo contains the development of the NFTify browser extension.  Currently, it's broken into two sections.
 
 
 ## extension/
