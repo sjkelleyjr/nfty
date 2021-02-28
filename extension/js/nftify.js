@@ -19,7 +19,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 		return
 	}
     // send a message to the injected script to load web3 with the requested srcUrl.
-    await document.dispatchEvent(new CustomEvent('loadWeb3', { detail: request.srcUrl }));
+    await document.dispatchEvent(new CustomEvent('mintColor', { detail: request.srcUrl }));
     // NOTE: we have to send something back to the background.js script, likely this will be an Ethereum tx ID.
     sendResponse({ srcUrl: request.srcUrl })
   }

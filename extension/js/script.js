@@ -33,6 +33,7 @@ const loadBlockchainData = async () => {
   // Load account
   const accounts = await web3.eth.getAccounts();
   console.log ('account: ', accounts[0]);
+  window.account = accounts[0];
   const networkId = await web3.eth.net.getId();
   const networkData = ColorContract.networks[networkId];
   if (!networkData) {
@@ -43,7 +44,7 @@ const loadBlockchainData = async () => {
   const abi = ColorContract.abi;
   const address = networkData.address;
   const colorContract = new web3.eth.Contract(abi, address);
-
+  window.colorContract = colorContract
   const totalSupply = await colorContract.methods.totalSupply().call();
   console.log(totalSupply)
 
@@ -51,15 +52,27 @@ const loadBlockchainData = async () => {
   for (var i = 0; i < totalSupply; i++) {
     const colorBytes = await colorContract.methods.colors(i).call();
     const colorStr = colorHexToString(colorBytes);
-    // for now, just print the colors out to prove we can interact with the smart contract from here...
+    // for now, just print the colors out to prove we can interact with the smart contract from here.
     console.log(colorStr)
   }
 }
 
+const mint = (colorStr) => {
+  console.log('minting ' + colorStr + ' NFT')
+  const colorBytes = colorStringToBytes(colorStr);
+  window.colorContract.methods
+    .mint(colorBytes)
+    .send({ from: window.account })
+    .once('receipt', (receipt) => {
+      console.log ('transaction receipt: ', receipt)
+    });
+}
 
 // respond to messages passed by the nftify.js script, which itself is listening to the background.js messages.
-document.addEventListener('loadWeb3', async (e) => {
+document.addEventListener('mintColor', async (e) => {
   console.log(e.detail)
   await loadWeb3()
   await loadBlockchainData()
+  //just mint a random color for now to prove we can interact with the wallet from here.
+  await mint("#" + Math.floor(Math.random()*16777215).toString(16));
 });
