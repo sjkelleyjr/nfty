@@ -14,7 +14,8 @@
 
 const nftify = async (info) => {
 	chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-	  chrome.tabs.sendMessage(tabs[0].id, { srcUrl: info.srcUrl }, (response) => {
+       // send this to the listener in nftify.js, which will forward it on to the injected script to interact with the Ethereum wallet. 
+	   chrome.tabs.sendMessage(tabs[0].id, { srcUrl: info.srcUrl }, (response) => {
 	  	//shouldn't receive anything back, but in case we need to, here's how to do it.
 	    console.log(response);
 	  });
@@ -30,13 +31,8 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
+    //if the user selected nftify on a image.
     if (info.menuItemId === 'nftify' && info.mediaType === 'image') {
-    	console.log('USER CLICKED AN IMAGE...')
-    	console.log('INFO:')
-    	console.log(info)
 		nftify(info)
-    	console.log(info.srcUrl)
-    } else {
-    	console.log(info)
     }
 });
