@@ -1,0 +1,21 @@
+  {
+    "name": "NFTify",
+    "version": "1.0",
+    "description": "A browser extension to turn an image into an NFT",
+    "manifest_version": 2,
+    "background": {
+      "scripts": ["js/background.js"],
+      "persistent": false
+    },
+    "web_accessible_resources": ["js/script.js"],
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": [
+          "js/nftify.js"
+        ]
+  		}
+  	],
+    "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'",
+    "permissions": ["contextMenus", "tabs"]
+  }
