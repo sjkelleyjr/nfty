@@ -7,7 +7,7 @@
       "scripts": ["js/background.js"],
       "persistent": false
     },
-    "web_accessible_resources": ["js/script.js"],
+    "web_accessible_resources": ["js/script.js", "third-party/web3.min.js"],
     "content_scripts": [
       {
         "matches": ["http://*/*", "https://*/*"],

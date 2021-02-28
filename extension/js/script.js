@@ -17,6 +17,6 @@ const loadWeb3 = async () => {
 
 // respond to messages passed by the nftify.js script, which itself is listening to the background.js messages.
 document.addEventListener('loadWeb3', async (e) => {
-  console.log(e)
+  console.log(e.detail)
   await loadWeb3()
 });
