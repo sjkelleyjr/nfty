@@ -12,9 +12,9 @@
 //Currently we've add the functionality to retrieve the user's email if they have sync turned on in Chrome, but we're
 //console logging it for now.
 
-const nftify = async (info) => {
+const nfty = async (info) => {
 	chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-       // send this to the listener in nftify.js, which will forward it on to the injected script to interact with the Ethereum wallet. 
+       // send this to the listener in nfty.js, which will forward it on to the injected script to interact with the Ethereum wallet. 
 	   chrome.tabs.sendMessage(tabs[0].id, { srcUrl: info.srcUrl }, (response) => {
 	  	//shouldn't receive anything back, but in case we need to, here's how to do it.
 	    console.log(response);
@@ -24,15 +24,15 @@ const nftify = async (info) => {
 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
-        title: 'NFTify',
-        id: 'nftify', // this is used in the click handler to identify which menu item was clicked.
+        title: 'nfty',
+        id: 'nfty', // this is used in the click handler to identify which menu item was clicked.
         contexts: ['all'],
     });
 });
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    //if the user selected nftify on a image.
-    if (info.menuItemId === 'nftify' && info.mediaType === 'image') {
-		nftify(info)
+    //if the user selected nfty on an image.
+    if (info.menuItemId === 'nfty' && info.mediaType === 'image') {
+		nfty(info)
     }
 });

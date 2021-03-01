@@ -68,7 +68,7 @@ const mint = (colorStr) => {
     });
 }
 
-// respond to messages passed by the nftify.js script, which itself is listening to the background.js messages.
+// respond to messages passed by the nfty.js script, which itself is listening to the background.js messages.
 document.addEventListener('mintColor', async (e) => {
   console.log(e.detail)
   await loadWeb3()

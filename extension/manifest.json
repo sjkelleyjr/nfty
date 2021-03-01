@@ -1,5 +1,5 @@
   {
-    "name": "NFTify",
+    "name": "nfty",
     "version": "1.0",
     "description": "A browser extension to turn an image into an NFT",
     "manifest_version": 2,
@@ -15,7 +15,7 @@
       {
         "matches": ["http://*/*", "https://*/*"],
         "js": [
-          "js/nftify.js"
+          "js/nfty.js"
         ]
   		}
   	],
