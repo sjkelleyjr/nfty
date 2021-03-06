@@ -24,7 +24,7 @@ const nfty = async (info) => {
 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
-        title: 'nfty',
+        title: 'Mint This Image',
         id: 'nfty', // this is used in the click handler to identify which menu item was clicked.
         contexts: ['all'],
     });
