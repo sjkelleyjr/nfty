@@ -13,7 +13,7 @@ Along with the smart contract, it also contains a react app to interact with the
 
 # Opensea
 
-The next steps are to replace the interactions with the colors contract with an [opensea](https://opensea.io/) contract.  Opensea uses a concept called the [`TradeableERC721Token`](https://docs.opensea.io/docs/1-structuring-your-smart-contract#section-creature-erc-721-contract)), which is eventually what will replace the `colors/` directory.
+The next steps are to replace the interactions with the colors contract with an [opensea](https://opensea.io/) contract.  Opensea uses a concept called the [`TradeableERC721Token`](https://docs.opensea.io/docs/1-structuring-your-smart-contract#section-creature-erc-721-contract), which is eventually what will replace the `colors/` directory.
 
 After following [these opensea tutorials](https://docs.opensea.io/docs/getting-started), I've found that we'll need a server to provide the metadata associated with the NFT.  In this case, it would just be the image key with the URL of the user's selected image, as seen in [this creature example](https://opensea-creatures-api.herokuapp.com/api/creature/1).  The smart contract would then point to the server endpoint in the [`baseTokenURI`](https://github.com/ProjectOpenSea/opensea-creatures/blob/a0db5ede13ffb2d43b3ebfc2c50f99968f0d1bbb/contracts/Creature.sol#L14)function of the smart contract, rather than opensea's test endpoint.
 
