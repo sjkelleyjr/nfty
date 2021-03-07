@@ -19,6 +19,8 @@ After following [these opensea tutorials](https://docs.opensea.io/docs/getting-s
 
 I'm still trying to decide if I want to use IPFS (opensea suggests [pinata](https://pinata.cloud/) if so), or a vanilla offering like API Gateway.
 
+This [GitHub issue opened in the opensea-js repo](https://github.com/ProjectOpenSea/opensea-js/issues/66) is a good overview of what we're trying to achieve, the question is, how do we do it?
+
 ## Architecture
 The open questions at the bottom of this section make this proposed architecture tentative.  It is subject to change depending on the answers to those.
 
