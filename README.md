@@ -1,21 +1,19 @@
-This repo contains the development of the nfty browser extension.  Currently, it's broken into two sections.
-
+This repo contains the development of the nfty browser extension.  Currently it interacts with [the opensea-creatures test NFT contract that I forked](https://github.com/sjkelleyjr/opensea-creatures) in order to have something to code against.  As such, discussion of that smart contract can be found in this README.
 
 # extension/
 The `extension/` directory, which houses the code for the browser extension.
 
-As it stands now, this is [minting a new creature NFT](./extension/js/script.js#L65) every time the "Mint This Image" menu item is selected.  However, the mint only succeeds if it's signed by the [`OWNER_ADDRESS`](./extension/js/script.js#L18), as stipulated in the example smart contract in the `opensea-creatures/contracts/ERC721Tradable.sol` smart contract `_mintTo` function.
+As it stands now, this is [minting a new creature NFT](./extension/js/script.js#L65) every time the "Mint This Image" menu item is selected.
 
 # opensea-creatures/
-The `opensea-creatures/` directory which houses the NFT smart contract that the browser extension currently interacts with on the Rinkeby testnet.  This code was taken from the [opensea creatures tutorial](https://docs.opensea.io/docs/getting-started).  You can see the minted creatures on the [opensea testnet UI for this particular collection](https://testnets.opensea.io/collection/opensea-creatures-c9tjxshfhz).
+The `opensea-creatures/` directory which houses the NFT smart contract that the browser extension currently interacts with on the Rinkeby testnet.  This code was taken from the [opensea creatures tutorial](https://docs.opensea.io/docs/getting-started) with a [one-line change to allow anyone to mint tokens rather than just the owner of the contract](https://github.com/sjkelleyjr/opensea-creatures/commit/041de6430f80f439ba965fee769a1f469281c0e9) (myself in this case). 
+
+You can see the minted creatures on the [opensea testnet UI for this particular collection](https://testnets.opensea.io/collection/opensea-creatures-u2wptl6ke2).
 
 Along with the smart contract, it also contains some node.js scripts to interact with the smart contract as an example of how it's done.  This contract was just used as a basic example of an NFT smart contract in order to have a contract to code against in the extension and should be replaced with an opensea compatible contract specific to our use case.
 
 # Opensea
-
-The next steps are to replace the interactions with the colors contract with an [opensea](https://opensea.io/) contract.  Opensea uses a concept called the [`TradeableERC721Token`](https://docs.opensea.io/docs/1-structuring-your-smart-contract#section-creature-erc-721-contract), which is eventually what will replace the `colors/` directory.
-
-After following [these opensea tutorials](https://docs.opensea.io/docs/getting-started), I've found that we'll need a server to provide the metadata associated with the NFT.  In this case, it would just be the image key with the URL of the user's selected image, as seen in [this creature example](https://opensea-creatures-api.herokuapp.com/api/creature/1).  The smart contract would then point to the server endpoint in the [`baseTokenURI`](https://github.com/ProjectOpenSea/opensea-creatures/blob/a0db5ede13ffb2d43b3ebfc2c50f99968f0d1bbb/contracts/Creature.sol#L14)function of the smart contract, rather than opensea's test endpoint.
+After following [the opensea tutorials](https://docs.opensea.io/docs/getting-started), I've found that we'll need a server to provide the metadata associated with the NFT.  In this case, it would just be the image key with the URL of the user's selected image, as seen in [this creature example](https://opensea-creatures-api.herokuapp.com/api/creature/1).  The smart contract would then point to the server endpoint in the [`baseTokenURI`](https://github.com/ProjectOpenSea/opensea-creatures/blob/a0db5ede13ffb2d43b3ebfc2c50f99968f0d1bbb/contracts/Creature.sol#L14)function of the smart contract, rather than opensea's test endpoint.
 
 I'm still trying to decide if I want to use IPFS (opensea suggests [pinata](https://pinata.cloud/) if so), or a vanilla offering like API Gateway.
 
@@ -40,8 +38,10 @@ The server would be extremely simple, it would do 2 things:
     2. accept GET requests from opensea for the NFT metadata by [`tokenId`](https://github.com/ProjectOpenSea/opensea-creatures/blob/a0db5ede13ffb2d43b3ebfc2c50f99968f0d1bbb/contracts/TradeableERC721Token.sol#L33) (maybe our tokenId is a hash of the URL?  The color contract uses a byte array of the hex string, maybe a simple byte array of the URL would suffice?)
 
 
-### Open Questions
+# Q/A
 
 * Who owns the token?  Ideally it should be us first, in order to do the secondary sales fee mentioned below, and we would gift the token to the user after taking initial ownership.
+    - We own the collection and the smart contract, but we will "_mintTo" the user, meaning they'll own the NFT.
 * How do we programmatically enact the [secondary sales fees specified here](https://docs.opensea.io/docs/10-setting-fees-on-secondary-sales)? This is the key to monetizing the extension.
+    - there is no way to programmatically do this as far as I know.
 * What happens when an image gets minted, but the upload to the API fails?  We should ideally have some kind of periodic process to list all of the images that have been minted, and add them to the metadata server if they're missing.  This means that it's important that the identifier we use for the image makes it easily retrievable so we can do something like this if necessary.

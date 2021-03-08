@@ -16,7 +16,7 @@ const NFT_ABI = [
 ];
 
 const OWNER_ADDRESS = '0x3ab63726FC1725Bb5A56610ef99dbB43Ca207147'
-const NFT_CONTRACT_ADDRESS = '0xCD2ce57Eea1d3bdFfC09CA2d58e1721d25722a3f'
+const NFT_CONTRACT_ADDRESS = '0x0B4E9b00E75E76C7619C9b7BF267B7285d769ae7'
 
 const loadWeb3 = async () => {
 	if (window.ethereum) {
@@ -50,8 +50,8 @@ const mintCreature = async () => {
 
 	console.log('minting to: ' + window.account)
 	const result = await nftContract.methods
-		.mintTo( OWNER_ADDRESS )
-		.send({ from: OWNER_ADDRESS  });
+		.mintTo( window.account )
+		.send({ from: window.account  });
 		console.log("Minted creature. Transaction: " + result.transactionHash);
 }
 
