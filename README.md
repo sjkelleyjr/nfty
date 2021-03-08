@@ -4,12 +4,12 @@ This repo contains the development of the nfty browser extension.  Currently, it
 # extension/
 The `extension/` directory, which houses the code for the browser extension.
 
-As it stands now, this is [minting a random color NFT](./extension/js/script.js#L77) every time the "Mint This Image" menu item is selected, so, largely the extension development is "done".  Rather than minting a color we'll be minting something related to the `TradeableERC721Token` discussed below.
+As it stands now, this is [minting a new creature NFT](./extension/js/script.js#L65) every time the "Mint This Image" menu item is selected.  However, the mint only succeeds if it's signed by the [`OWNER_ADDRESS`](./extension/js/script.js#L18), as stipulated in the example smart contract in the `opensea-creatures/contracts/ERC721Tradable.sol` smart contract `_mintTo` function.
 
-# colors/
-The `colors/` directory which houses the NFT smart contract that the browser extension currently interacts with.  This code was taken from the [RSK Colors tutorial](https://developers.rsk.co/tutorials/tokens/create-a-collectable-token/) (with some minor updates to make the code functional).
+# opensea-creatures/
+The `opensea-creatures/` directory which houses the NFT smart contract that the browser extension currently interacts with on the Rinkeby testnet.  This code was taken from the [opensea creatures tutorial](https://docs.opensea.io/docs/getting-started).  You can see the minted creatures on the [opensea testnet UI for this particular collection](https://testnets.opensea.io/collection/opensea-creatures-c9tjxshfhz).
 
-Along with the smart contract, it also contains a react app to interact with the smart contract via the browser as an example of how it's done.  This contract was just used as a basic example of an NFT smart contract in order to have a contract to code against in the extension and should be replaced with an opensea compatible contract discussed below.
+Along with the smart contract, it also contains some node.js scripts to interact with the smart contract as an example of how it's done.  This contract was just used as a basic example of an NFT smart contract in order to have a contract to code against in the extension and should be replaced with an opensea compatible contract specific to our use case.
 
 # Opensea
 
