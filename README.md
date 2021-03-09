@@ -1,7 +1,8 @@
-# NOTE
+# :warning: NOTE :warning:
 
 **This README isn't being updated anymore, look at the commit messages instead.  I thought some people would be collaborating on this with me, so I made a point of keeping it up to date for their sake.  So far, no one has forked or submitted PRs, so I'm going to assume no one else is contributing until I hear otherwise.  Therefore, the README is left stale as is for now.**
 
+---
 
 
 This repo contains the development of the nfty browser extension.  Currently it interacts with [the opensea-creatures test NFT contract that I forked](https://github.com/sjkelleyjr/opensea-creatures) in order to have something to code against.  As such, discussion of that smart contract can be found in this README.
