@@ -5,7 +5,7 @@
     "manifest_version": 2,
     "background": {
       "scripts": ["js/background.js"],
-      "persistent": false
+      "persistent": true
     },
     "web_accessible_resources": [
       "js/script.js",
@@ -20,5 +20,5 @@
   		}
   	],
     "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'",
-    "permissions": ["contextMenus", "tabs"]
+    "permissions": ["contextMenus", "tabs", "notifications"]
   }

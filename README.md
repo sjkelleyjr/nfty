@@ -1,9 +1,15 @@
+# NOTE
+
+This README isn't being updated anymore, look at the commit messages instead.  I thought some people would be collaborating on this with me, so I made a point of keeping it up to date for their sake.  So far, no one has forked or submitted PRs, so I'm going to assume no one else is contributing until I hear otherwise.  Therefore, the README is left stale as is for now.
+
+
+
 This repo contains the development of the nfty browser extension.  Currently it interacts with [the opensea-creatures test NFT contract that I forked](https://github.com/sjkelleyjr/opensea-creatures) in order to have something to code against.  As such, discussion of that smart contract can be found in this README.
 
 # extension/
 The `extension/` directory, which houses the code for the browser extension.
 
-As it stands now, this is [minting a new creature NFT](./extension/js/script.js#L65) every time the "Mint This Image" menu item is selected.
+As it stands now, this is [minting a new image NFT](./extension/js/script.js#L65) every time the "Mint This Image" menu item is selected.
 
 # opensea-creatures/
 The `opensea-creatures/` directory which houses the NFT smart contract that the browser extension currently interacts with on the Rinkeby testnet.  This code was taken from the [opensea creatures tutorial](https://docs.opensea.io/docs/getting-started) with a [one-line change to allow anyone to mint tokens rather than just the owner of the contract](https://github.com/sjkelleyjr/opensea-creatures/commit/041de6430f80f439ba965fee769a1f469281c0e9) (myself in this case). 

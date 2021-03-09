@@ -19,8 +19,14 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 		return
 	}
     // send a message to the injected script to load web3 with the requested srcUrl.
-    await document.dispatchEvent(new CustomEvent('mintCreature', { detail: request.srcUrl }));
+    await document.dispatchEvent(new CustomEvent('mintImage', { detail: request.srcUrl }));
     // NOTE: we have to send something back to the background.js script, likely this will be an Ethereum tx ID.
     sendResponse({ srcUrl: request.srcUrl })
   }
 );
+
+// listen to events from the injected javascript to open new tabs after a mint request.
+document.addEventListener('navigateBrowser', async (e) => {
+    console.log(`sending ${e.detail} to the background script to navigate the browser.`)
+    chrome.runtime.sendMessage({navUrl: e.detail}, (response) => { });
+});

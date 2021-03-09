@@ -30,6 +30,19 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 
+
+//receive messages from the content script
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+    //currently we're only handling tab navigation here, hence the undefined check.
+    if (request.navUrl !== undefined) {
+        chrome.tabs.create({url: request.navUrl})
+    }
+    //send an empty response for now.
+    sendResponse()
+  }
+);
+
+
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     //if the user selected nfty on an image.
     if (info.menuItemId === 'nfty' && info.mediaType === 'image') {
