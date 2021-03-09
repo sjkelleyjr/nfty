@@ -1,6 +1,6 @@
 # NOTE
 
-This README isn't being updated anymore, look at the commit messages instead.  I thought some people would be collaborating on this with me, so I made a point of keeping it up to date for their sake.  So far, no one has forked or submitted PRs, so I'm going to assume no one else is contributing until I hear otherwise.  Therefore, the README is left stale as is for now.
+**This README isn't being updated anymore, look at the commit messages instead.  I thought some people would be collaborating on this with me, so I made a point of keeping it up to date for their sake.  So far, no one has forked or submitted PRs, so I'm going to assume no one else is contributing until I hear otherwise.  Therefore, the README is left stale as is for now.**
 
 
 
